@@ -1,9 +1,125 @@
-/* Edit company information here. Unknown facts remain explicit placeholders. */
-
-const LOGO_BASE_PATH = "assets/logos/logos_finales";
+/* Edit company information here. Companies without confirmed information keep explicit placeholders. */
 const exitCompanies = new Set(["Zoop", "Bind", "Arcus"]);
+
+const companyDetails = {
+  "Zoop": {
+    founders: ["Fabiano Cruz, Rodrigo Miranda"],
+    investmentDate: "April 2016",
+    description: "Payment service provider (PSP) offering an end-to-end payments platform, combining payment processing and settlement software with proprietary Chip&PIN/EMV-certified POS terminals, letting banks, marketplaces, and merchants of any size accept and manage payments without relying on multiple intermediaries."
+  },
+  "Bind": {
+    founders: ["Alejandro Bonilla, Santiago Alvarado"],
+    investmentDate: "October 2017",
+    description: "Cloud-based ERP built for small and medium-sized businesses in Mexico, centralizing accounting, invoicing, inventory, and sales management on a single platform."
+  },
+  "Arcus": {
+    founders: ["Edrizio de la Cruz, Iñigo Rumayor, Hesham El-Nahhas"],
+    investmentDate: "October 2017",
+    description: "Payments and banking connectivity infrastructure (open banking/payments API) for Mexico, enabling fintechs and companies to move money and integrate with local banks."
+  },
+  "Comtrade": {
+    founders: ["Luis Gerardo Díaz Infante", "Israel Félix"],
+    investmentDate: "July 2023",
+    description: "B2B SaaS platform that automates foreign trade audits and simplifies supply chain management, giving importers and exporters a single tool for compliance, financing, insurance, and inspections."
+  },
+  "Konvex": {
+    founders: ["Joan Rodríguez", "Carlos Cuéllar", "Cristóbal Sosa"],
+    investmentDate: "September 2023",
+    description: "AI-powered reconciliation and underwriting software that integrates with ERPs, e-commerce platforms, and payment gateways to automate financial reconciliation for businesses."
+  },
+  "Bridgefy": {
+    founders: ["Jorge Ríos", "Roberto Betancourt", "Diego García"],
+    investmentDate: "November 2016",
+    description: "Mesh-networking technology that lets mobile apps function without an internet connection, using Bluetooth to relay messages between nearby devices in disasters, protests, or dead zones."
+  },
+  "Ualabee": {
+    founders: ["Joaquín Di Mario", "Franco Rapetti", "Alexis Picón"],
+    investmentDate: "December 2024",
+    description: "AI platform that unifies transit and urban mobility data into real-time insights, helping individuals, companies, and cities plan routes and make mobility decisions more efficiently."
+  },
+  "Paybook": {
+    founders: ["Gerardo Treviño"],
+    investmentDate: "September 2015",
+    description: "Open finance platform that aggregates and standardizes banking and accounting data, allowing businesses to build financial products and automate processes using their customers' financial information."
+  },
+  "Balcony": {
+    founders: ["David Hammel"],
+    investmentDate: "December 2016",
+    description: "Geo-communication platform that helps governments, enterprises, and NGOs coordinate teams and respond to emergencies with real-time, location-based situational awareness."
+  },
+  "Trato": {
+    founders: ["Ignacio Bermeo"],
+    investmentDate: "August 2017",
+    description: "Contract lifecycle management platform that simplifies and automates legal contract workflows, using blockchain to streamline how businesses draft, execute, and manage agreements."
+  },
+  "Apparta": {
+    founders: ["Henry Sánchez", "Gonzalo Forero"],
+    investmentDate: "July 2022",
+    description: "Restaurant marketplace that fills empty tables during off-peak hours by offering diners discounted reservations, helping restaurants boost occupancy and revenue."
+  },
+  "Saldo": {
+    founders: ["Marco Neri"],
+    investmentDate: "April 2016",
+    description: "Mobile app that lets people in the U.S. pay bills and top up mobile phones on behalf of family and friends in Mexico directly from their smartphone."
+  },
+  "EdMachina": {
+    founders: ["Yamil Rabbat"],
+    investmentDate: "July 2023",
+    description: "AI-driven analytics platform for higher education institutions that predicts student dropout and course-failure risk and automates personalized retention outreach."
+  },
+  "Ruedata": {
+    founders: ["Sebastián Baquero", "Jorge Quinche"],
+    investmentDate: "December 2022",
+    description: "SaaS platform that uses data analytics to help transport fleets monitor tire health, cut tire-related costs, and reduce accidents caused by tire failure."
+  },
+  "Carryt": {
+    founders: ["Daniel Cuervo"],
+    investmentDate: "December 2021",
+    description: "Last-mile logistics platform that uses AI-driven routing and a network of micro-warehouses to help consumer goods, e-commerce, and retail companies deliver faster and more efficiently."
+  },
+  "Ezcale": {
+    founders: ["Pedro Monteiro", "Rodrigo Miranda"],
+    investmentDate: "May 2023",
+    description: "Payment orchestration infrastructure that handles automated multi-party splits, reconciliation, and dynamic pricing, giving marketplaces and fintechs the backbone to process complex payment flows reliably."
+  },
+  "BeatPulse": {
+    founders: ["Jason Rieff", "Nikolay Vitanov"],
+    investmentDate: "July 2025",
+    description: "Provides licensed, expertly annotated music and multimedia datasets that give AI labs the high-fidelity training data needed to build generative music and multimodal models."
+  },
+  "Talently": {
+    founders: ["Doménica Obando", "Roxana Kern", "Cristian Vega"],
+    investmentDate: "July 2021",
+    description: "EdTech platform that trains Latin American tech professionals and places them in international remote jobs, helping them significantly increase their earnings."
+  },
+  "Axify": {
+    founders: ["Rodolfo Valdés", "Sofía Robles Santamarina"],
+    investmentDate: "March 2023",
+    description: "Save-now, buy-later fintech that lets consumers reserve products or services and pay for them gradually before taking possession, giving budget-conscious shoppers a debt-free way to access retail purchases."
+  },
+  "Two to Tango": {
+    founders: ["Andrés Rico"],
+    investmentDate: "April 2023",
+    description: "Business matchmaking platform that automatically creates and nurtures meaningful professional connections between attendees before, during, and after events."
+  },
+  "Rally": {
+    founders: ["Numaan Akram"],
+    investmentDate: "April 2019",
+    description: "Technology marketplace that modernizes the charter bus industry, using AI to create new intercity routes and connect riders with bus operators for events and regional travel."
+  },
+  "LinkToAny": {
+    founders: ["Sriram Subramanian"],
+    investmentDate: "October 2020",
+    description: "Integration Platform as a Service (iPaaS) that connects apps and automates operational data flows for retail, food, and hospitality businesses, eliminating manual data entry between systems."
+  },
+  "Flexza": {
+    founders: ["Santiago Ocejo", "Diego Villarreal"],
+    investmentDate: "June 2024",
+    description: "Flexible health benefits fintech that gives employees a card to cover medical expenses, letting employers offer a modern, tax-efficient health benefit without administrative overhead."
+  }
+};
+
 const portfolioCompanies = [
-  ["Bayonet", "bayonet_logo.png"],
   ["Konvex", "konvex_logo.png"],
   ["Bridgefy", "bridgefy_logo.png"],
   ["Ualabee", "ualabee_logo.png"],
@@ -13,378 +129,156 @@ const portfolioCompanies = [
   ["Trato", "trato_logo.png"],
   ["Apparta", "apparta_logo.png"],
   ["Saldo", "saldo_logo.png"],
-  ["TopicFlower", "topicflower_logo.png"],
   ["Bind", "bind_logo.png"],
-  ["Hitsbook", "hitsbook_logo.png"],
   ["EdMachina", "edmachina_logo.png"],
   ["Ruedata", "ruedata_logo.png"],
   ["Carryt", "carryt_logo.png"],
   ["Ezcale", "ezcale_logo.png"],
   ["Arcus", "arcus_logo.png"],
-  ["Chargy", "chargy_logo.png"],
   ["BeatPulse", "beatpulse_logo.png"],
   ["Talently", "talently_logo.png"],
   ["Axify", "axify_logo.png"],
   ["Two to Tango", "twototango_logo.png"],
   ["Rally", "rallybus_logo.png"],
   ["LinkToAny", "linktoany_logo.png"],
-  ["Auditate", "auditate_logo.png"],
+  ["Comtrade", "auditate_logo.png"],
   ["Flexza", "flexza_logo.png"]
-].map(([name, file]) => ({
-  name,
-  logo: `${LOGO_BASE_PATH}/${file}`,
-  exited: exitCompanies.has(name),
-  founders: [{ name: "TBD", photo: null }],
-  investmentDate: "TBD",
-  description: "Add company description",
-  website: null,
-  linkedin: null
-}));
+].map(([name, file]) => {
+  const details = companyDetails[name] ?? {};
+
+  return {
+    name,
+    logo: `assets/logos/logos_finales/${file}`,
+    modalLogo: `assets/logos/logos_finales/${file}`,
+    exited: exitCompanies.has(name),
+    founders: (details.founders ?? ["TBD"]).map(founderName => ({
+      name: founderName,
+      photo: null
+    })),
+    investmentDate: details.investmentDate ?? "TBD",
+    description: details.description ?? "Add company description",
+    website: null,
+    linkedin: null
+  };
+});
+
 
 const teamMembers = [
   {
     name: "Lorenzo Garza",
     role: "Co-founder & Partner",
     photo: "assets/images/lorenzo_garza.png",
-    linkedin: null
+    linkedin: "https://www.linkedin.com/in/lorenzo-garza-8140764"
   },
   {
     name: "Rodrigo Ocejo",
     role: "Co-founder & Partner",
     photo: "assets/images/rodrigo_ocejo.png",
-    linkedin: null
+    linkedin: "https://www.linkedin.com/in/rodrigoocejo"
   },
   {
     name: "Miguel Bernard",
     role: "Associate",
     photo: "assets/images/miguel_bernard.png",
-    linkedin: null
+    linkedin: "https://www.linkedin.com/in/miguel-bernard-6a0407"
   },
   {
     name: "Wilber Palenque",
     role: "Principal",
-    photo: "assets/images/wilber_palenque.png",
-    linkedin: null
+    photo: "assets/images/wilber_palenque.jpeg",
+    linkedin: "https://www.linkedin.com/in/wilber-palenque"
   },
   {
     name: "Antonio Arizmendi",
     role: "Analyst",
     photo: "assets/images/antonio_arizmendi.jpg",
-    linkedin: null
+    linkedin: "https://www.linkedin.com/in/antonioarizmendi"
   }
 ];
 
-/* Portfolio */
 const portfolioGrid = document.querySelector("#portfolio-grid");
 const exitsGrid = document.querySelector("#exits-grid");
 
-const createCompanyCard = (company, originalIndex) => {
-  const button = document.createElement("button");
-
-  button.className = "company-card reveal";
-  button.type = "button";
-  button.dataset.companyIndex = String(originalIndex);
-  button.setAttribute(
-    "aria-label",
-    `View ${company.name} investment details`
-  );
-
-  if (company.exited) {
-    button.classList.add("exit-card");
-  }
-
-  button.innerHTML = `
-    <img
-      src="${company.logo}"
-      alt="${company.name} logo"
-      loading="lazy"
-      data-logo-file="${company.logo}">
-  `;
-
-  const image = button.querySelector("img");
-
-  image.addEventListener("error", () => {
-    console.error(
-      `Logo not found: ${image.dataset.logoFile}. ` +
-      "Confirm that the PNG exists directly inside assets/logos/logos_finales."
-    );
-  });
-
-  return button;
-};
-
 const renderCompanies = (companies, container) => {
   companies.forEach((company) => {
-    const originalIndex = portfolioCompanies.indexOf(company);
-    container.append(createCompanyCard(company, originalIndex));
+    const button = document.createElement("button");
+    const originalIndex = portfolioCompanies.findIndex(item => item.name === company.name);
+
+    button.className = "company-card reveal";
+    if (company.exited) button.classList.add("exit-card");
+
+    button.type = "button";
+    button.dataset.companyIndex = originalIndex;
+    button.setAttribute("aria-label", `View ${company.name} investment details`);
+    button.innerHTML = `<img src="${company.logo}" alt="${company.name} logo" loading="lazy">`;
+
+    container.append(button);
   });
 };
 
-/* Exits appear before the current portfolio in the HTML. */
-renderCompanies(
-  portfolioCompanies.filter((company) => company.exited),
-  exitsGrid
-);
+renderCompanies(portfolioCompanies.filter(company => !company.exited), portfolioGrid);
+renderCompanies(portfolioCompanies.filter(company => company.exited), exitsGrid);
 
-renderCompanies(
-  portfolioCompanies.filter((company) => !company.exited),
-  portfolioGrid
-);
-
-/* Team */
 const teamGrid = document.querySelector("#team-grid");
+teamMembers.forEach(member => { const article = document.createElement("article"); article.className = "team-card reveal"; article.innerHTML = `<img src="${member.photo}" alt="Portrait of ${member.name}" loading="lazy"><div class="team-info"><h3>${member.name}</h3><p>${member.role}</p>${member.linkedin ? `<a href="${member.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ""}</div>`; teamGrid.append(article) });
 
-teamMembers.forEach((member) => {
-  const article = document.createElement("article");
-
-  article.className = "team-card reveal";
-  article.innerHTML = `
-    <img
-      src="${member.photo}"
-      alt="Portrait of ${member.name}"
-      loading="lazy">
-    <div class="team-info">
-      <h3>${member.name}</h3>
-      <p>${member.role}</p>
-      ${
-        member.linkedin
-          ? `<a href="${member.linkedin}" target="_blank" rel="noopener">LinkedIn ↗</a>`
-          : ""
-      }
-    </div>
-  `;
-
-  teamGrid.append(article);
-});
-
-/* Company modal */
-const modal = document.querySelector("#company-modal");
-const modalPanel = modal.querySelector(".modal-panel");
-const modalContent = document.querySelector("#modal-content");
-let lastFocused = null;
-
-const openModal = (company) => {
-  lastFocused = document.activeElement;
-
-  const founderNames = company.founders
-    .map((founder) => founder.name)
-    .join(", ");
-
-  modalContent.innerHTML = `
-    <div class="modal-company">
-      <div>
-        <div class="modal-logo-wrap">
-          <img src="${company.logo}" alt="${company.name} logo">
-        </div>
-      </div>
-
-      <div>
-        <p class="modal-meta">
-          ${company.exited ? "Exited company" : "Portfolio company"}
-        </p>
-
-        <h3 id="modal-title">${company.name}</h3>
-
-        <p class="modal-description ${
-          company.description.startsWith("Add") ? "placeholder" : ""
-        }">
-          ${company.description}
-        </p>
-
-        <dl class="modal-fields">
-          <div>
-            <dt>Founder${company.founders.length > 1 ? "s" : ""}</dt>
-            <dd class="${founderNames === "TBD" ? "placeholder" : ""}">
-              ${founderNames}
-            </dd>
-          </div>
-
-          <div>
-            <dt>Investment date</dt>
-            <dd class="${
-              company.investmentDate === "TBD" ? "placeholder" : ""
-            }">
-              ${company.investmentDate}
-            </dd>
-          </div>
-
-          ${
-            company.website
-              ? `
-                <div>
-                  <dt>Website</dt>
-                  <dd>
-                    <a href="${company.website}" target="_blank" rel="noopener">
-                      Visit website ↗
-                    </a>
-                  </dd>
-                </div>
-              `
-              : ""
-          }
-
-          ${
-            company.linkedin
-              ? `
-                <div>
-                  <dt>LinkedIn</dt>
-                  <dd>
-                    <a href="${company.linkedin}" target="_blank" rel="noopener">
-                      View profile ↗
-                    </a>
-                  </dd>
-                </div>
-              `
-              : ""
-          }
-        </dl>
-      </div>
-    </div>
-  `;
-
-  modal.classList.add("is-open");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-  modalPanel.focus();
-};
-
-const closeModal = () => {
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-  lastFocused?.focus();
-};
-
-const handlePortfolioClick = (event) => {
+const modal = document.querySelector("#company-modal"), modalPanel = modal.querySelector(".modal-panel"), modalContent = document.querySelector("#modal-content"); let lastFocused = null;
+const openModal = company => { lastFocused = document.activeElement; const founderNames = company.founders.map(f => f.name).join(", "); modalContent.innerHTML = `<div class="modal-company"><div><div class="modal-logo-wrap"><img
+  src="${company.modalLogo}"
+  alt="${company.name} logo"
+  data-company="${company.name}"
+></div></div><div><p class="modal-meta">Portfolio company</p><h3 id="modal-title">${company.name}</h3><p class="modal-description ${company.description.startsWith("Add") ? "placeholder" : ""}">${company.description}</p><dl class="modal-fields"><div><dt>Founder${company.founders.length > 1 ? "s" : ""}</dt><dd class="${founderNames === "TBD" ? "placeholder" : ""}">${founderNames}</dd></div><div><dt>Investment date</dt><dd class="${company.investmentDate === "TBD" ? "placeholder" : ""}">${company.investmentDate}</dd></div>${company.website ? `<div><dt>Website</dt><dd><a href="${company.website}" target="_blank" rel="noopener">Visit website ↗</a></dd></div>` : ""}${company.linkedin ? `<div><dt>LinkedIn</dt><dd><a href="${company.linkedin}" target="_blank" rel="noopener">View profile ↗</a></dd></div>` : ""}</dl></div></div>`; modal.classList.add("is-open"); modal.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open"); modalPanel.focus() };
+const closeModal = () => { modal.classList.remove("is-open"); modal.setAttribute("aria-hidden", "true"); document.body.classList.remove("modal-open"); lastFocused?.focus() };
+const handleCompanyClick = event => {
   const card = event.target.closest(".company-card");
-
-  if (!card) {
-    return;
-  }
-
-  const companyIndex = Number(card.dataset.companyIndex);
-  openModal(portfolioCompanies[companyIndex]);
+  if (!card) return;
+  openModal(portfolioCompanies[Number(card.dataset.companyIndex)]);
 };
 
-portfolioGrid.addEventListener("click", handlePortfolioClick);
-exitsGrid.addEventListener("click", handlePortfolioClick);
+portfolioGrid.addEventListener("click", handleCompanyClick);
+exitsGrid.addEventListener("click", handleCompanyClick);
+modal.addEventListener("click", event => { if (event.target.closest("[data-close-modal]")) closeModal() });
+document.addEventListener("keydown", event => { if (!modal.classList.contains("is-open")) return; if (event.key === "Escape") closeModal(); if (event.key === "Tab") { const focusable = [...modal.querySelectorAll("button,a[href]")]; const first = focusable[0], last = focusable.at(-1); if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() } } });
 
-modal.addEventListener("click", (event) => {
-  if (event.target.closest("[data-close-modal]")) {
-    closeModal();
-  }
-});
+const header = document.querySelector("#site-header"), menuButton = document.querySelector(".menu-toggle"), navLinks = document.querySelector("#nav-links");
+const setMenu = open => { menuButton.setAttribute("aria-expanded", String(open)); menuButton.querySelector(".sr-only").textContent = open ? "Close menu" : "Open menu"; navLinks.classList.toggle("open", open); header.classList.toggle("menu-open", open) };
+menuButton.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true")); navLinks.addEventListener("click", event => { if (event.target.matches("a")) setMenu(false) });
+const onScroll = () => { header.classList.toggle("scrolled", scrollY > 30); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.style.setProperty("--parallax", `${Math.min(scrollY * .08, 45)}px`) }; addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
-document.addEventListener("keydown", (event) => {
-  if (!modal.classList.contains("is-open")) {
-    return;
-  }
-
-  if (event.key === "Escape") {
-    closeModal();
-  }
-
-  if (event.key === "Tab") {
-    const focusable = [...modal.querySelectorAll("button, a[href]")];
-    const first = focusable[0];
-    const last = focusable.at(-1);
-
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  }
-});
-
-/* Header and mobile menu */
-const header = document.querySelector("#site-header");
-const menuButton = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector("#nav-links");
-
-const setMenu = (open) => {
-  menuButton.setAttribute("aria-expanded", String(open));
-  menuButton.querySelector(".sr-only").textContent = open
-    ? "Close menu"
-    : "Open menu";
-  navLinks.classList.toggle("open", open);
-  header.classList.toggle("menu-open", open);
-};
-
-menuButton.addEventListener("click", () => {
-  setMenu(menuButton.getAttribute("aria-expanded") !== "true");
-});
-
-navLinks.addEventListener("click", (event) => {
-  if (event.target.matches("a")) {
-    setMenu(false);
-  }
-});
-
-const onScroll = () => {
-  header.classList.toggle("scrolled", scrollY > 30);
-
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.documentElement.style.setProperty(
-      "--parallax",
-      `${Math.min(scrollY * 0.08, 45)}px`
-    );
-  }
-};
-
-addEventListener("scroll", onScroll, { passive: true });
-onScroll();
-
-/* Letter-by-letter hero animation */
+// Letter-by-letter animation for the hero statement
 const animatedHeroTexts = document.querySelectorAll("[data-animate-text]");
+
 let heroCharacterIndex = 0;
 
 animatedHeroTexts.forEach((element) => {
-  const text = element.textContent.trim();
+    const text = element.textContent.trim();
 
-  element.textContent = "";
-  element.setAttribute("aria-hidden", "true");
+    element.textContent = "";
+    element.setAttribute("aria-hidden", "true");
 
-  [...text].forEach((character) => {
-    const span = document.createElement("span");
+    [...text].forEach((character) => {
+        const span = document.createElement("span");
 
-    span.className = "hero-char";
-    span.style.setProperty("--char-index", heroCharacterIndex);
-    span.innerHTML = character === " " ? "&nbsp;" : character;
+        span.className = "hero-char";
+        span.style.setProperty(
+            "--char-index",
+            heroCharacterIndex
+        );
 
-    element.appendChild(span);
-    heroCharacterIndex += 1;
-  });
+        span.innerHTML =
+            character === " "
+                ? "&nbsp;"
+                : character;
 
-  heroCharacterIndex += 3;
-});
+        element.appendChild(span);
 
-/* Reveal-on-scroll animation */
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
+        heroCharacterIndex += 1;
     });
-  },
-  {
-    threshold: 0.12,
-    rootMargin: "0px 0px -30px"
-  }
-);
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  observer.observe(element);
+    // Small additional pause between phrases
+    heroCharacterIndex += 3;
 });
 
+const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target) } }), { threshold: .12, rootMargin: "0px 0px -30px" }); document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
 document.querySelector("#year").textContent = new Date().getFullYear();
-
-document
-  .querySelectorAll("[data-application-link], [data-privacy-link]")
-  .forEach((link) => {
-    link.addEventListener("click", (event) => event.preventDefault());
-  });
+document.querySelectorAll("[data-application-link],[data-privacy-link]").forEach(link => link.addEventListener("click", event => event.preventDefault()));

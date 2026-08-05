@@ -119,20 +119,23 @@ img {
 }
 
 .brand {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: .65rem;
-    font-size: .7rem;
-    font-weight: 700;
-    line-height: .9;
-    text-transform: uppercase;
-    letter-spacing: .06em
 }
 
-.brand-mark {
-    font-size: 1.7rem;
-    line-height: 1
+.brand-logo {
+    display: block;
+    width: clamp(155px, 13vw, 195px);
+    height: auto;
+    transition: filter .35s;
 }
+
+/* El logo blanco se vuelve oscuro cuando el menú tiene fondo claro */
+.site-header.scrolled .brand-logo,
+.site-header.menu-open .brand-logo {
+    filter: invert(1);
+}
+
 
 .nav-links {
     display: flex;
@@ -242,9 +245,14 @@ img {
     text-align: right;
 }
 
+.hero-copy {
+    line-height: 1.08;
+}
+
 .hero-copy-line {
     display: block;
-    overflow: hidden;
+    overflow: visible;
+    padding-bottom: 0.12em;
 }
 
 .hero-copy-highlight {
@@ -440,6 +448,7 @@ img {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
     border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
 }
 
 .thesis-pillar {
@@ -496,13 +505,19 @@ h2 {
 
 .ticket-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: 33.33%
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    margin-left: 0;
+
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
 }
 
 .ticket {
-    padding: clamp(2rem, 5vw, 5rem);
-    border-left: 1px solid var(--line)
+    min-width: 0;
+    padding: clamp(3rem, 5vw, 5rem);
+    border-left: 1px solid var(--line);
 }
 
 .ticket-index {
@@ -623,6 +638,7 @@ h2 {
 .exits-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
 
 .company-card {
     width: 100%;
@@ -867,6 +883,64 @@ h2 {
     margin-top: 1rem
 }
 
+/* ========================================
+   AIRTABLE APPLICATION FORM
+======================================== */
+
+.airtable-section {
+    background: var(--paper);
+    color: var(--ink);
+    padding-top: 2rem;
+    padding-bottom: clamp(5rem, 9vw, 9rem);
+}
+
+.airtable-heading {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    border-bottom: 1px solid var(--line);
+}
+
+.airtable-heading .eyebrow {
+    align-self: start;
+    margin: 0;
+}
+
+.airtable-heading h2 {
+    margin: 0;
+}
+
+.airtable-heading > p:last-child {
+    grid-column: 2;
+
+    max-width: 600px;
+    margin: 1.5rem 0 0;
+
+    color: var(--muted);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+}
+
+.airtable-frame {
+    margin-top: 0;
+
+    background: #fff;
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.airtable-embed {
+    display: block;
+
+    width: 100%;
+    min-height: 1000px;
+
+    border: 0;
+    background: transparent;
+}
+
 .footer {
     background: #0c1d29;
     color: #fff;
@@ -967,16 +1041,39 @@ h2 {
 
 .modal-logo-wrap {
     background: #fff;
-    min-height: 230px;
+    min-height: 300px;
     display: grid;
     place-items: center;
-    padding: 2rem
+    padding: .5rem;
+    overflow: hidden;
 }
 
 .modal-logo-wrap img {
-    max-width: 150px;
-    max-height: 80px;
-    object-fit: contain
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: 230px;
+    object-fit: contain;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: scale(1.15) !important;
+    transform-origin: center;
+    mix-blend-mode: normal;
+}
+
+/* Ajustes individuales para logos con mucho espacio vacío interno */
+
+.modal-logo-wrap img[data-company="Bind"] {
+    transform: scale(1.55) !important;
+}
+
+.modal-logo-wrap img[data-company="Zoop"] {
+    transform: scale(1.42) !important;
+}
+
+.modal-logo-wrap img[data-company="Arcus"] {
+    transform: scale(1.38) !important;
 }
 
 .modal-meta {
@@ -1097,6 +1194,19 @@ a:focus-visible {
     .nav {
         height: 74px;
     }
+
+    .airtable-heading {
+    grid-template-columns: 1fr;
+    align-items: start;
+}
+
+.airtable-heading > p:last-child {
+    grid-column: 1;
+}
+
+.airtable-embed {
+    min-height: 1150px;
+}
 
     .menu-toggle {
         display: block;
