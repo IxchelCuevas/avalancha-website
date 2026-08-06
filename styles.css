@@ -639,6 +639,42 @@ h2 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+/* Logos de exits ligeramente más grandes */
+.exits-grid .company-card {
+    padding: .35rem;
+}
+
+.exits-grid .company-card img {
+    width: min(380px, 100%);
+    max-height: 145px;
+    transform: scale(1.15);
+}
+/* Zoop: un poco más pequeño */
+.exits-grid .company-card img[alt="Zoop logo"] {
+    transform: scale(1.00);
+}
+
+/* Arcus: un poco más pequeño */
+.exits-grid .company-card img[alt="Arcus logo"] {
+    transform: scale(1.03);
+}
+
+/* Tamaño al pasar el cursor */
+.exits-grid .company-card:hover img[alt="Zoop logo"],
+.exits-grid .company-card:focus-visible img[alt="Zoop logo"] {
+    transform: scale(1.07);
+}
+
+.exits-grid .company-card:hover img[alt="Arcus logo"],
+.exits-grid .company-card:focus-visible img[alt="Arcus logo"] {
+    transform: scale(1.10);
+}
+
+.exits-grid .company-card:hover img,
+.exits-grid .company-card:focus-visible img {
+    transform: scale(1.2);
+}
+
 
 .company-card {
     width: 100%;
