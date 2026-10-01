@@ -127,13 +127,32 @@ img {
     display: block;
     width: clamp(155px, 13vw, 195px);
     height: auto;
-    transition: filter .35s;
+
+    /* Arriba del hero: todo blanco */
+    filter: brightness(0) invert(1);
+
+    transition: filter .35s var(--ease);
 }
 
-/* El logo blanco se vuelve oscuro cuando el menú tiene fondo claro */
+/* Logo blanco visible al inicio */
+.brand-logo-white {
+    opacity: 1;
+}
+
+/* Logo original escondido inicialmente */
+.brand-logo-original {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    opacity: 0;
+}
+
 .site-header.scrolled .brand-logo,
 .site-header.menu-open .brand-logo {
-    filter: invert(1);
+    /* Header claro: logo original negro + barra azul */
+    filter: none;
 }
 
 
@@ -289,7 +308,7 @@ img {
     animation-delay:
         calc(
             0.15s +
-            var(--char-index) * 18ms
+            var(--char-index) * 32ms
         );
 }
 
@@ -367,6 +386,7 @@ img {
 
 .thesis.section {
     padding-top: clamp(3rem, 5vw, 5rem);
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
 .thesis .section-intro {
@@ -408,11 +428,11 @@ img {
 
 .thesis-statement-image {
     grid-column: 1;
-
-    min-height: clamp(420px, 42vw, 620px);
-
+    aspect-ratio: 1 / 1;
+    min-height: 0;
     margin: 0;
     overflow: hidden;
+    align-self: center;
 }
 
 .thesis-statement-image img {
@@ -421,8 +441,8 @@ img {
 
     object-fit: cover;
 
-    /* Mueve el encuadre para mostrar al esquiador */
-    object-position: center 62%;
+    /* Encuadre para mantener visible al alpinista y la cima */
+    object-position: center 58%;
 }
 
 .thesis-statement p {
@@ -437,6 +457,118 @@ img {
     line-height: 1.08;
     letter-spacing: -0.04em;
 }
+
+
+
+
+/* Subtle interaction for the thesis image */
+/* ========================================
+   INVESTMENT THESIS — CORE VERTICALS
+======================================== */
+
+.thesis-verticals {
+    padding-block: clamp(3rem, 5vw, 5rem);
+    border-bottom: 1px solid var(--line);
+}
+
+.thesis-verticals-head {
+    display: grid;
+    grid-template-columns: .9fr 2.1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+    margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+.thesis-verticals-head .eyebrow {
+    margin: .35rem 0 0;
+    color: #42627a;
+}
+
+.thesis-verticals-head h3 {
+    max-width: 950px;
+    margin: 0;
+    color: #132e43;
+    font-size: clamp(2rem, 3.3vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.verticals-note {
+    max-width: 700px;
+    margin: 1.5rem 0 0;
+    color: var(--muted);
+    font-size: clamp(.95rem, 1.15vw, 1.1rem);
+    line-height: 1.5;
+}
+
+.vertical-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.vertical-item {
+    min-height: clamp(140px, 11vw, 175px);
+    padding: clamp(1.25rem, 2vw, 2rem);
+
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.28);
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform .3s var(--ease),
+        background .3s var(--ease),
+        border-color .3s var(--ease);
+}
+
+.vertical-item::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: #42627a;
+}
+
+.vertical-item span {
+    max-width: 230px;
+    color: #132e43;
+    font-size: clamp(1.25rem, 1.9vw, 2rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    text-align: center;
+}
+
+.vertical-item:nth-child(1),
+.vertical-item:nth-child(2),
+.vertical-item:nth-child(3),
+.vertical-item:nth-child(4) {
+    background: rgba(66, 98, 122, 0.08);
+}
+
+.vertical-item:nth-child(1)::before {
+    background: #42627a;
+}
+
+.vertical-item:nth-child(2)::before {
+    background: #5f7c96;
+}
+
+.vertical-item:nth-child(3)::before {
+    background: #314c62;
+}
+
+.vertical-item:nth-child(4)::before {
+    background: #7592a7;
+}
+
 
 
 /* ========================================
@@ -454,7 +586,7 @@ img {
 .thesis-pillar {
     min-height: 360px;
 
-    padding:
+padding:
         clamp(2rem, 3vw, 3.5rem)
         clamp(1.5rem, 2.5vw, 3rem);
 
@@ -516,7 +648,7 @@ h2 {
 
 .ticket {
     min-width: 0;
-    padding: clamp(3rem, 5vw, 5rem);
+padding: clamp(3rem, 5vw, 5rem);
     border-left: 1px solid var(--line);
 }
 
@@ -544,42 +676,71 @@ h2 {
     font-size: clamp(.95rem, 1.2vw, 1.1rem)
 }
 
-.manifesto {
-    margin: clamp(5rem, 10vw, 10rem) 0 0;
-    padding-top: clamp(3rem, 5vw, 5rem);
-    border-top: 1px solid var(--ink);
+/* Manifesto + skier image */
+.manifesto-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
 
+    margin-top: clamp(4rem, 7vw, 6rem);
+    padding-top: clamp(2.5rem, 4vw, 3.5rem);
+    border-top: 1px solid var(--ink);
+}
+
+.manifesto {
+    margin: 0;
+    padding: 0;
+    border-top: 0;
     position: relative;
-    display: flex;
-    justify-content: center;
+    display: block;
 }
 
 .manifesto span {
     position: absolute;
     left: 0;
-    top: clamp(3rem, 5vw, 5rem);
-
-    font-size: 2rem;
+    top: .2rem;
+    font-size: 1.8rem;
 }
 
 .manifesto p {
-    max-width: 1100px;
+    max-width: 830px;
+    margin: 0;
+    padding-left: 3.25rem;
 
-    margin: 0 auto;
-
-    font-size: clamp(2.2rem, 4.3vw, 4.8rem);
-    line-height: 1.02;
+    font-size: clamp(2.4rem, 3.8vw, 4.3rem);
+    line-height: 1.03;
     letter-spacing: -0.045em;
-
-    text-align: center;
+    text-align: left;
 }
 
 .manifesto em {
     color: #42627a
 }
 
+.thesis-journey-image {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    margin: 0 0 0 auto;
+    overflow: hidden;
+}
+
+.thesis-journey-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 58%;
+    display: block;
+}
+
 .portfolio {
     background: var(--white)
+}
+
+.portfolio.section {
+    padding-top: clamp(3rem, 5vw, 4.5rem);
+    padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
 }
 
 .section-heading {
@@ -635,8 +796,10 @@ h2 {
     border-left: 1px solid var(--line);
 }
 
+
 .exits-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /* Logos de exits ligeramente más grandes */
@@ -647,33 +810,49 @@ h2 {
 .exits-grid .company-card img {
     width: min(380px, 100%);
     max-height: 145px;
-    transform: scale(1.15);
 }
-/* Zoop: un poco más pequeño */
+
+/* ===== TAMAÑOS MANUALES DE EXITS ===== */
+
 .exits-grid .company-card img[alt="Zoop logo"] {
-    transform: scale(1.00);
+    transform: scale(1.2);
 }
 
-/* Arcus: un poco más pequeño */
+.exits-grid .company-card img[alt="Bind logo"] {
+    transform: scale(1.4);
+}
+
 .exits-grid .company-card img[alt="Arcus logo"] {
-    transform: scale(1.03);
+    transform: scale(1.2);
 }
 
-/* Tamaño al pasar el cursor */
-.exits-grid .company-card:hover img[alt="Zoop logo"],
-.exits-grid .company-card:focus-visible img[alt="Zoop logo"] {
-    transform: scale(1.07);
+.exits-grid .company-card img[alt="Codiga logo"] {
+    transform: scale(0.9);
 }
 
-.exits-grid .company-card:hover img[alt="Arcus logo"],
-.exits-grid .company-card:focus-visible img[alt="Arcus logo"] {
-    transform: scale(1.10);
+.exits-grid .company-card:hover img[alt="Zoop logo"] {
+    transform: scale(1.25);
 }
+
+.exits-grid .company-card:hover img[alt="Bind logo"] {
+    transform: scale(1.45);
+}
+
+.exits-grid .company-card:hover img[alt="Arcus logo"] {
+    transform: scale(1.25);
+}
+
+.exits-grid .company-card:hover img[alt="Codiga logo"] {
+    transform: scale(0.95);
+}
+
+
 
 .exits-grid .company-card:hover img,
 .exits-grid .company-card:focus-visible img {
     transform: scale(1.2);
 }
+
 
 
 .company-card {
@@ -723,6 +902,35 @@ h2 {
         transform .4s var(--ease);
 }
 
+/* Pantera */
+.company-card img[alt="Pantera logo"] {
+    transform: scale(1.6);
+}
+.company-card:hover img[alt="Pantera logo"],
+.company-card:focus-visible img[alt="Pantera logo"] {
+    transform: scale(1.65);
+}
+
+/* Ualabee en la cuadrícula */
+.company-card img[alt="Ualabee logo"] {
+    transform: scale(0.7);
+}
+
+.company-card:hover img[alt="Ualabee logo"],
+.company-card:focus-visible img[alt="Ualabee logo"] {
+    transform: scale(0.75);
+}
+
+
+.company-card img[alt="Paybook logo"] {
+    transform: scale(1.5);
+}
+
+.company-card:hover img[alt="Paybook logo"],
+.company-card:focus-visible img[alt="Paybook logo"] {
+    transform: scale(1.6);
+}
+
 .company-card:hover img,
 .company-card:focus-visible img {
     filter: none;
@@ -735,16 +943,69 @@ h2 {
     opacity: 1;
     transform: none;
 }
+/* Apparta */
+.company-card img[alt="Apparta logo"] {
+    transform: scale(1.3);
+}
+
+.company-card:hover img[alt="Apparta logo"],
+.company-card:focus-visible img[alt="Apparta logo"] {
+    transform: scale(1.35);
+}
+
+/* Carryt */
+.company-card img[alt="Carryt logo"] {
+    transform: scale(1.4);
+}
+
+.company-card:hover img[alt="Carryt logo"],
+.company-card:focus-visible img[alt="Carryt logo"] {
+    transform: scale(1.45);
+}
+
+/* Ruedata */
+.company-card img[alt="Ruedata logo"] {
+    transform: scale(1.4);
+}
+
+.company-card:hover img[alt="Ruedata logo"],
+.company-card:focus-visible img[alt="Ruedata logo"] {
+    transform: scale(1.45);
+}
+
+/* Flexza */
+.company-card img[alt="Flexza logo"] {
+    transform: scale(1.3);
+}
+
+.company-card:hover img[alt="Flexza logo"],
+.company-card:focus-visible img[alt="Flexza logo"] {
+    transform: scale(1.35);
+}
+
+.company-card img[alt="Saldo logo"] {
+    transform: scale(1.1);
+}
+
+.company-card:hover img[alt="Saldo logo"],
+.company-card:focus-visible img[alt="Saldo logo"] {
+    transform: scale(1.15);
+}
 
 .team {
-    background: #dfe7e9
+    background: #dfe7e9;
+}
+
+.team.section {
+    padding-top: clamp(2rem, 3vw, 3rem);
+    padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
 }
 
 .team-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(.8rem, 1.5vw, 1.5rem);
-    max-width: 1400px;
+    gap: clamp(.65rem, 1vw, .9rem);
+    max-width: 1160px;
     margin: 0 auto;
     align-items: stretch;
 }
@@ -752,8 +1013,10 @@ h2 {
 .team-card {
     position: relative;
     overflow: hidden;
-    background: #c8d2d5;
+    background: var(--blue);
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .team-card img {
@@ -762,50 +1025,106 @@ h2 {
     object-fit: cover;
     object-position: center;
     filter: none;
-    transition: transform .6s var(--ease);
+    transform: none;
+    display: block;
+}
+
+/* Remove the light edge visible at the top of Lorenzo's source image */
+.team-card:first-child img {
+    transform: scale(1.012);
+    transform-origin: center;
 }
 
 .team-info {
-    position: absolute;
-    inset: auto 0 0;
-    min-height: 42%;
-    padding: 4.5rem 1.25rem 1.25rem;
+    position: relative;
+    min-height: 82px;
+    padding: .65rem .85rem .75rem;
+
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+
     color: #fff;
-    background: linear-gradient(
-        transparent,
-        rgba(8, 16, 22, .94)
-    );
+    background: transparent;
     transform: none;
+
+    isolation: isolate;
+    overflow: visible;
+}
+
+.team-info::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        180deg,
+        rgba(31, 74, 101, .96) 0%,
+        rgba(24, 57, 80, .98) 48%,
+        #132e43 100%
+    );
+
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform .35s var(--ease);
+}
+
+.team-card:hover .team-info::before,
+.team-card:focus-within .team-info::before {
+    transform: scaleY(1.14);
 }
 
 .team-info h3 {
     margin: 0;
-    font-size: clamp(1.15rem, 1.5vw, 1.65rem);
+    font-size: clamp(.95rem, 1.05vw, 1.15rem);
     font-weight: 400;
     line-height: 1.08;
 }
 
 .team-info p {
-    margin: .55rem 0 0;
-    font-size: clamp(.62rem, .7vw, .72rem);
-    line-height: 1.35;
+    margin: .28rem 0 0;
+    font-size: clamp(.54rem, .6vw, .63rem);
+    line-height: 1.25;
     text-transform: uppercase;
-    letter-spacing: .09em;
-    opacity: 1;
+    letter-spacing: .085em;
+    opacity: .9;
 }
 
 .team-info a {
-    margin-top: .65rem;
-    font-size: .66rem;
+    position: relative;
+    display: inline-flex;
+    width: max-content;
+    margin-top: .38rem;
+
+    font-size: .59rem;
     text-transform: uppercase;
     letter-spacing: .1em;
+
+    transition:
+        opacity .25s var(--ease),
+        transform .25s var(--ease);
 }
 
-.team-card:hover img {
-    transform: scale(1.025);
+.team-info a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1px;
+    background: currentColor;
+    transition: right .3s var(--ease);
+}
+
+.team-info a:hover,
+.team-info a:focus-visible {
+    opacity: .72;
+    transform: translateX(3px);
+}
+
+.team-info a:hover::after,
+.team-info a:focus-visible::after {
+    right: 0;
 }
 
 .experience {
@@ -909,8 +1228,19 @@ h2 {
     letter-spacing: -.06em
 }
 
-.journey a span {
-    font-size: .45em
+.journey a > span:last-child {
+    font-size: .45em;
+}
+
+.journey-write-text {
+    display: inline-block;
+    font-size: inherit;
+    letter-spacing: inherit;
+    white-space: nowrap;
+}
+
+.journey-write-text .write-char {
+    font-size: inherit;
 }
 
 .journey small {
@@ -960,7 +1290,9 @@ h2 {
 }
 
 .airtable-frame {
-    margin-top: 0;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
 
     background: #fff;
     border: 1px solid var(--line);
@@ -969,9 +1301,9 @@ h2 {
 
 .airtable-embed {
     display: block;
-
     width: 100%;
-    min-height: 1000px;
+    height: 680px;
+    min-height: 0;
 
     border: 0;
     background: transparent;
@@ -1101,15 +1433,52 @@ h2 {
 /* Ajustes individuales para logos con mucho espacio vacío interno */
 
 .modal-logo-wrap img[data-company="Bind"] {
-    transform: scale(1.55) !important;
+    transform: scale(1.9) !important;
+}
+
+.modal-logo-wrap img[data-company="Paybook"] {
+    transform: scale(1.8) !important;
+}
+
+.modal-logo-wrap img[data-company="Bridgefy"] {
+    transform: scale(1.2) !important;
+}
+
+.modal-logo-wrap img[data-company="Axify"] {
+    transform: scale(1.4) !important;
+}
+
+.modal-logo-wrap img[data-company="Flexza"] {
+    transform: scale(1.4) !important;
 }
 
 .modal-logo-wrap img[data-company="Zoop"] {
-    transform: scale(1.42) !important;
+    transform: scale(1.6) !important;
+}
+
+.modal-logo-wrap img[data-company="Carryt"] {
+    transform: scale(1.6) !important;
 }
 
 .modal-logo-wrap img[data-company="Arcus"] {
-    transform: scale(1.38) !important;
+    transform: scale(1.7) !important;
+}
+.modal-logo-wrap img[data-company="Pantera"] {
+    transform: scale(1.7) !important;
+}
+.modal-logo-wrap img[data-company="Codiga"] {
+    transform: scale(1.0) !important;
+}
+.modal-logo-wrap img[data-company="Ualabee"] {
+    transform: scale(0.8) !important;
+}
+
+.modal-logo-wrap img[data-company="Ruedata"] {
+    transform: scale(1.8) !important;
+}
+
+.modal-logo-wrap img[data-company="BeatPulse"] {
+    transform: scale(1.0) !important;
 }
 
 .modal-meta {
@@ -1167,6 +1536,25 @@ a:focus-visible {
 }
 
 @media(max-width:900px) {
+    .manifesto-row {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .thesis-journey-image {
+        max-width: 520px;
+        margin-left: auto;
+    }
+
+    .thesis-verticals-head {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .vertical-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .portfolio-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -1204,7 +1592,8 @@ a:focus-visible {
 
 .thesis-statement-image {
     grid-column: 1;
-    min-height: 520px;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
 }
 
 .thesis-statement p {
@@ -1227,6 +1616,31 @@ a:focus-visible {
 }
 
 @media(max-width:680px) {
+    .manifesto p {
+        padding-left: 2.5rem;
+        font-size: clamp(1.8rem, 9vw, 2.6rem);
+    }
+
+    .manifesto span {
+        font-size: 1.4rem;
+    }
+
+    .thesis-journey-image {
+        max-width: 100%;
+    }
+
+    .vertical-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vertical-item {
+        min-height: 130px;
+    }
+
+    .thesis-verticals-head h3 {
+        font-size: clamp(1.9rem, 9vw, 2.8rem);
+    }
+
     .nav {
         height: 74px;
     }
@@ -1241,7 +1655,8 @@ a:focus-visible {
 }
 
 .airtable-embed {
-    min-height: 1150px;
+    height: 650px;
+    min-height: 0;
 }
 
     .menu-toggle {
@@ -1394,3 +1809,111 @@ a:focus-visible {
     }
 }
 
+
+
+/* ========================================
+   SCROLL WRITING ANIMATION
+   Applied only to selected key phrases
+======================================== */
+
+.write-on-scroll .write-char {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(7px);
+    transform: translateY(.8em);
+    will-change: opacity, transform, filter;
+}
+
+.write-on-scroll.is-written .write-char {
+    animation: writeCharReveal 1.05s cubic-bezier(.16, 1, .3, 1) forwards;
+    animation-delay: calc(.15s + var(--write-index) * 45ms);
+}
+
+
+@keyframes writeCharReveal {
+    from {
+        opacity: 0;
+        filter: blur(7px);
+        transform: translateY(.8em);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .write-on-scroll .write-char,
+    .write-on-scroll.is-written .write-char {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        animation: none;
+    }
+}
+/* ========================================
+   INVESTMENT THESIS — PILARES COMPACTOS
+======================================== */
+
+.thesis-pillar {
+    min-height: 280px;
+    padding: 2rem 2.2rem;
+}
+
+.pillar-index {
+    margin-bottom: 2.5rem;
+}
+
+.thesis-pillar h3 {
+    margin-bottom: 1rem;
+}
+
+.thesis-pillar p {
+    max-width: 360px;
+}
+
+/* ===== Subtítulos de sección un poco más grandes ===== */
+
+.eyebrow {
+    font-size: clamp(.8rem, .95vw, 1rem);
+}
+.thesis-verticals-head h3 {
+    font-size: clamp(2.7rem, 4vw, 4.6rem);
+}
+
+/* ========================================
+   CORE VERTICALS — AZULES MÁS ARMONIOSOS
+======================================== */
+
+.vertical-item,
+.vertical-item:nth-child(1),
+.vertical-item:nth-child(2),
+.vertical-item:nth-child(3),
+.vertical-item:nth-child(4) {
+    background: #294d66;
+    border-color: rgba(19, 46, 67, .16);
+}
+
+/* Texto */
+.vertical-item span {
+    color: #f7f9fa;
+}
+
+/* Banda superior */
+.vertical-item::before,
+.vertical-item:nth-child(1)::before,
+.vertical-item:nth-child(2)::before,
+.vertical-item:nth-child(3)::before,
+.vertical-item:nth-child(4)::before {
+     height: 7px;
+    background: #1f3f56;
+}
+
+
+.manifesto-row {
+    border-top: 0;
+    margin-top: clamp(3rem, 5vw, 4rem);
+    padding-top: 0;
+}
